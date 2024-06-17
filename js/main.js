@@ -40,11 +40,13 @@ let countDown = setInterval(
                 let userInput = parseInt(prompt("inserisci i 5 numeri, uno alla volta"));
                 console.log(userInput);
                 //se il numero comunicato da user, corrisponde alla lista dei numeri casuali
-                if(randomArray.includes(userInput)){
+                if(randomArray.includes(userInput) && !userArrInput.includes(userInput)){
                     console.log("yess");
                     //pusha nell'array delle risposte di User il valore
                     userArrInput.push(userInput);
                 }
+
+                
             }
             //comunica quanti numeri ha trovato
             console.log("Complimenti, hai trovato: ", userArrInput.length, "numeri");
