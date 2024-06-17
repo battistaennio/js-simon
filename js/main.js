@@ -9,9 +9,19 @@ const randomArray = arrayRandomNumbers(1, 50, 5);
 //seleziono in pagina il p dove far apparire i numeri casuali
 const randNumOutput = document.querySelector("p");
 randNumOutput.innerText += randomArray;
+console.log(randomArray);
 
 //seleziono dove stampare in pagina il timer
 const timerOutput = document.getElementById("timer-seconds");
+
+//seleziono il contenitore degli output
+const outputContainer = document.getElementById("output-container");
+
+//seleziono dove stampare il totale delle risposte corrette
+const lenghtOutput = document.getElementById("tot-correct-answ");
+
+//seleziono dove stampare i numeri corretti
+const correctNums = document.getElementById("arr-correct-answ");
 
 //imposto la durata del timer
 let timerDuration = /*30*/ 1;
@@ -29,32 +39,30 @@ let countDown = setInterval(
         //se il timer arriva a 0 secondi
         if (timerDuration === 0){
 
-            //interrompi il countdown
-            clearInterval(countDown);
-
             //fai sparire i numeri
             randNumOutput.classList.add("vanish");
+
+            //interrompi il countdown
+            clearInterval(countDown);
 
             //chiedi per 5 volte il numero da inserire
             for (let i = 0; i < 5; i++){
                 let userInput = parseInt(prompt("inserisci i 5 numeri, uno alla volta"));
-                console.log(userInput);
                 //se il numero comunicato da user, corrisponde alla lista dei numeri casuali
                 if(randomArray.includes(userInput) && !userArrInput.includes(userInput)){
-                    console.log("yess");
                     //pusha nell'array delle risposte di User il valore
                     userArrInput.push(userInput);
                 }
-
                 
             }
             //comunica quanti numeri ha trovato
-            console.log("Complimenti, hai trovato: ", userArrInput.length, "numeri");
+            lenghtOutput.innerText = userArrInput.length;
             //comunica quali numeri ha trovato
-            console.log("I numeri che hai trovato sono: ", userArrInput);
+            correctNums.innerText = userArrInput;
+            //rendo visibile il risultato
+            outputContainer.classList.remove("vanish");
 
         } else {   //altrimenti
-            
             //continua a sottrare 1 secondo
             timerDuration--;
         }
